@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Ich/CLionProjects/FH-Cpp/SortierAlg/main.cpp
+cmath
+-
+iostream
+-
+iomanip
+-
+cstdlib
+-
+chrono
+-
+

@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Ich/CLionProjects/FH-Cpp/HashFunktionVerketteteListe/Hashtabelle.cpp
+iostream
+-
+iomanip
+-
+Hashtabelle.h
+/Users/Ich/CLionProjects/FH-Cpp/HashFunktionVerketteteListe/Hashtabelle.h
+
+/Users/Ich/CLionProjects/FH-Cpp/HashFunktionVerketteteListe/Hashtabelle.h
+VerketteteListe.h
+/Users/Ich/CLionProjects/FH-Cpp/HashFunktionVerketteteListe/VerketteteListe.h
+
+/Users/Ich/CLionProjects/FH-Cpp/HashFunktionVerketteteListe/VerketteteListe.h
+
