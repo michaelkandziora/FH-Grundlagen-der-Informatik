@@ -50,6 +50,33 @@ void HashTable::insertItem(int key) {
     next_node->next = NULL;
 }
 
+bool HashTable::deleteItem(int key){
+    int index = hash(key);
+
+    node_t* curr = hashTable[index];
+    node_t* prev = NULL;
+    node_t* next = NULL;
+
+    if(curr == NULL){
+        printf("ERROR LEERE LISTE");
+    }
+
+    while(curr->data != key){
+        curr = curr->next;
+
+        if(curr == NULL){
+            printf("Wert nicht gefunden!");
+            return false;
+        }
+    }
+
+    prev->next = next;
+    next->prev = prev;
+
+    free(curr);
+    return true;
+}
+
 bool HashTable::search(int key){
     int index = hash(key);
 
@@ -109,8 +136,13 @@ int HashTable::balkenDiagramm(int scale) {
         arr[i] = count;
     }
 
-    for (int k = 0; k < TABLESIZE; ++k) {
-        
+    std::cout << std::endl;
 
+    for (int k = 0; k < TABLESIZE; ++k) {
+        int count = 0;
+        for (int l = 0; l < TABLESIZE; ++l) {
+            if(arr[k] == arr[l]) count++;
+        }
+        std::cout << "Wert " << arr[k] << "kommt " << count << " Mal vor." << std::endl;
     }
 }

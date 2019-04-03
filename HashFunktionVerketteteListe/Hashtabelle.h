@@ -13,6 +13,7 @@ public:
     int hash(int key);
     node_t* new_node(int first_value);
     void insertItem(int key);
+    bool deleteItem(int key);
     int numberOfItemsInIndex();
     int balkenDiagramm(int scale);
     void printTable();
