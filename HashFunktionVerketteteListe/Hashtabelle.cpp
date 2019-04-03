@@ -6,8 +6,12 @@
 #include <iomanip>
 #include "Hashtabelle.h"
 
-HashTable::HashTable() {
-    for (int i = 0; i < TABLESIZE; ++i) {
+HashTable::HashTable(int slots) {
+    //hashTable = (node_t**) malloc(sizeof(node_t*)*slots);
+    hashTable = new node_t*[slots];
+    m = slots;
+    n = 0;
+    for (int i = 0; i < m; ++i) {
         hashTable[i] = new node_t;
         hashTable[i]->data = -1;
         hashTable[i]->prev = nullptr;
@@ -15,11 +19,16 @@ HashTable::HashTable() {
     }
 }
 
+HashTable::~HashTable() {
+    delete[] hashTable;
+    m = 0;
+}
+
 int HashTable::hash(int key) {
 
     int index = 0;
 
-    index = key%TABLESIZE;
+    index = key%m;
     return index;
 }
 
@@ -48,6 +57,8 @@ void HashTable::insertItem(int key) {
     curr->next = next_node;
     next_node->prev = curr;
     next_node->next = NULL;
+
+    n++;
 }
 
 bool HashTable::deleteItem(int key){
@@ -100,7 +111,7 @@ bool HashTable::search(int key){
 
 int HashTable::numberOfItemsInIndex() {
 
-    for(int i = 0; i < TABLESIZE; ++i) {
+    for(int i = 0; i < m; ++i) {
         node_t* curr = hashTable[i];
         int count = 0;
 
@@ -111,12 +122,14 @@ int HashTable::numberOfItemsInIndex() {
 
         std::cout << "Bucket: " << i << " hat " << count-1 << " Einträge" << std::endl;
     }
+
+    return 0;
 }
 
 int HashTable::balkenDiagramm(int scale) {
-    int arr[TABLESIZE] = {0};
+    //int arr[m] = {0};
 
-    for(int i = 0; i < TABLESIZE; ++i) {
+    for(int i = 0; i < m; ++i) {
         node_t* curr = hashTable[i];
         int count = 0;
 
@@ -125,7 +138,7 @@ int HashTable::balkenDiagramm(int scale) {
             count++;
         }
 
-        std::cout << "Bucket: " << std::setw(3) << i << " hat " << count-1 << " Einträge " ;
+        std::cout << "Bucket: " << std::setw(5) << i << " hat " << std::setw(3) <<  count-1 << " Einträge " ;
 
         for (int j = 1; j < count/scale; ++j) {
             std::cout << "#";
@@ -133,16 +146,16 @@ int HashTable::balkenDiagramm(int scale) {
 
         std::cout << std::endl;
 
-        arr[i] = count;
+        //arr[i] = count;
     }
 
     std::cout << std::endl;
 
-    for (int k = 0; k < TABLESIZE; ++k) {
+    /*for (int k = 0; k < m; ++k) {
         int count = 0;
-        for (int l = 0; l < TABLESIZE; ++l) {
+        for (int l = 0; l < m; ++l) {
             if(arr[k] == arr[l]) count++;
         }
         std::cout << "Wert " << arr[k] << "kommt " << count << " Mal vor." << std::endl;
-    }
+    }*/
 }

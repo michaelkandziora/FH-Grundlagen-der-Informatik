@@ -9,7 +9,8 @@
 
 class HashTable{
 public:
-    HashTable();
+    HashTable(int slots = 10000);
+    ~HashTable();
     int hash(int key);
     node_t* new_node(int first_value);
     void insertItem(int key);
@@ -19,12 +20,14 @@ public:
     void printTable();
     bool search(int key);
 
-
 private:
-    static const int TABLESIZE = 31;
+    //  m = tablesize
+    int m;
+    //  n = 100 Mio
+    int n;
 
-    node_t* hashTable[TABLESIZE];
+    node_t** hashTable;
+
+
 };
-
-
 #endif //HASHFUNKTIONVERKETTETELISTE_HASHTABELLE_H
